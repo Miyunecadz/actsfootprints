@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTS - My QR Code Footprints</title>
+    <script src="assets//js/scripts/session.js" defer></script>
+    <script src="assets/js/scripts/changepass.js" defer></script>
+    <script src="assets/js/scripts/logout.js" defer></script>
+    <script src="assets/js/scripts/search.js" defer></script>
+    <script src="assets/js/scripts/allentry.js" defer></script>
+    <script src="assets/js/scripts/checkstatus.js" defer></script>
+	<link rel="shortcut icon" href="../files/SouthernLeyteLogo.png" type="image/x-icon">
+
+    <script src="assets/js/jquery-3.5.1.min.js" defer></script>
+    <script src="assets/js/bootstrap.bundle.min.js" defer></script>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<script>
+    window.console.log = function(){
+console.error('Sorry , developers tools are blocked here....');
+window.console.log = function() {
+    return false;
+}
+}
+
+console.log('test');	
+</script>
+
+
+<body onload="checkSession(); checkStatus(); ">
+    <div id="content">
+        <nav class="navbar navbar-expand-md navbar-light bg-dark">
+            <div id="navigation" class="container">
+                <a href="./index.html" class="navbar-brand text-light">ACTS - My QR Code Footprints</a>
+                <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item ">
+                        <a class="nav-link text-light" onclick="ShowChangePassword()" href="#changepassword">Change Password<span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a onclick="logout()" class="nav-link text-light d-flex align-content-center flex-wrap" href="#"><span class="material-icons">exit_to_app</span>Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+            </div>
+        </nav>
+
+
+        <div id="changePass" class="m-md-4" style="display: none;">
+            <div class="container p-5">
+
+                <div id="ChangePassErrorContainer" class="bg-danger p-2" style="display: none;">
+                    <span id="ChangePassErrorMessage" class="text-light">Error!!</span>
+                </div>
+                <form method="post" id="changePasswordForm">
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input class="form-control" type="password" name="newPassword" id="newPassword" placeholder="Enter new password.....">
+                    </div>
+                    <div class="form-group">
+                        <label for="rePass">Re-Enter New Password</label>
+                        <input class="form-control" type="password" name="rePass" id="rePass" placeholder="Re-enter new password.....">
+                    </div>
+
+                    <button type="submit" class="form-control btn btn-md btn-success p-2" id="changePassBTN">Change Password</button>
+                </form>
+                <button disabled="disabled" class="form-control btn btn-md btn-danger p-2" style="display: none;" id="changePassUpdatingBTN">Updating...</button>
+            </div>
+        </div>
+
+        <br>
+        <div class="m-lg-4 container" id="dataView">
+            <div id="StatusMessage">
+                
+            </div>  
+            <div class="group-row">
+                <form method="POST" class="form-inline p-2" id="searchForm">
+                    <input type="date" name="trackDate" id="trackDate" class="form-control mr-2">
+                    <button type="submit" class="form-control btn btn-primary" id="searchBTN">Search</button>
+                    <button disabled="disabled" class="form-control btn btn-md btn-danger p-2" style="display: none;" id="searchingBTN">Searching...</button>
+                    <button type="reset" class="form-control btn btn-warning" onclick="allEntry()" id="allentryBTN">Get All Entry</button>
+                    <button disabled="disabled" class="form-control btn btn-danger ,-1" style="display: none;" id="fetchingBTN">Searching...</button> 
+                </form>
+            </div>
+
+            <div id="dataTable" class="p-2 container">
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        function ShowChangePassword()
+        {
+            const changePassContainer = document.getElementById("changePass");
+            const dataView = document.getElementById("dataView");
+
+            changePassContainer.style.display = "block";
+            dataView.style.display = "none";
+
+        }
+    </script>
+</body>
+</html>
